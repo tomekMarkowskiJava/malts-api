@@ -7,10 +7,13 @@ import javax.persistence.Id;
 
 @Entity
 public class SingleMalt {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
+
     private String name;
+
     private Integer age;
 
     public SingleMalt() {
