@@ -20,11 +20,10 @@ public class SingleMaltApi {
 
     private SingleMaltManager singleMaltManager;
 
+    @Autowired
     public SingleMaltApi(SingleMaltManager singleMaltManager) {
         this.singleMaltManager = singleMaltManager;
     }
-
-    @Autowired
 
 
     @GetMapping("/all")
