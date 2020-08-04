@@ -1,5 +1,6 @@
 package pl.markowski.maltsapp.api;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,50 +10,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pl.markowski.maltsapp.dao.entity.SingleMalt;
+import pl.markowski.maltsapp.manager.SingleMaltManager;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/malts")
 public class SingleMaltApi {
 
-    private List<SingleMalt> singleMaltsList;
+    private SingleMaltManager singleMaltManager;
 
-    public SingleMaltApi() {
-        singleMaltsList = new ArrayList<>();
-        singleMaltsList.add(new SingleMalt(1, "Ardbeg", 10));
-        singleMaltsList.add(new SingleMalt(2, "Glenmorangie Lasanta", 12));
-        singleMaltsList.add(new SingleMalt(3, "Singleton", 18));
-
+    public SingleMaltApi(SingleMaltManager singleMaltManager) {
+        this.singleMaltManager = singleMaltManager;
     }
 
+    @Autowired
+
+
     @GetMapping("/all")
-    public List<SingleMalt> getAll() {
-        return singleMaltsList;
+    public Iterable<SingleMalt> getAll() {
+        return singleMaltManager.findAll();
     }
 
     @GetMapping()
-    public SingleMalt getById(@RequestParam int index) {
-        Optional<SingleMalt> first = singleMaltsList.stream().
-                filter(element -> element.getId() == index).findFirst();
-        return first.get();
+    public Optional<SingleMalt> getById(@RequestParam Integer index) {
+        return singleMaltManager.findById(index);
 
     }
 
     @PostMapping
-    public boolean addMalt(@RequestBody SingleMalt singleMalt){
-        return singleMaltsList.add(singleMalt);
+    public SingleMalt addMalt(@RequestBody SingleMalt singleMalt){
+        return singleMaltManager.save(singleMalt);
     }
 
     @PutMapping
-    public boolean updateMalt(@RequestBody SingleMalt singleMalt){
-        return singleMaltsList.add(singleMalt);
+    public SingleMalt updateMalt(@RequestBody SingleMalt singleMalt){
+        return singleMaltManager.save(singleMalt);
     }
 
     @DeleteMapping
-    public boolean deleteMalt(@RequestParam int index){
-        return singleMaltsList.removeIf(element -> element.getId() == index);
+    public void deleteMalt(@RequestParam Integer index){
+        singleMaltManager.deleteById(index);
     }
 }
