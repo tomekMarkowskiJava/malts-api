@@ -1,6 +1,8 @@
 package pl.markowski.maltsapp.manager;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import pl.markowski.maltsapp.dao.SingleMaltRepo;
 import pl.markowski.maltsapp.dao.entity.SingleMalt;
@@ -31,6 +33,11 @@ public class SingleMaltManager {
 
     public void deleteById(Integer id){
         singleMaltRepo.deleteById(id);
+    }
+
+    @EventListener(ApplicationReadyEvent.class)
+    public void fill(){
+        save(new SingleMalt(1,"Ardbeg",10));
     }
 
 
