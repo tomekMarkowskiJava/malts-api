@@ -32,7 +32,7 @@ public class SingleMaltApi {
     }
 
     @GetMapping()
-    public Optional<SingleMalt> getById(@RequestParam Integer index) {
+    public Optional<SingleMalt> getById(@RequestParam Long index) {
         return singleMaltManager.findById(index);
 
     }
@@ -48,7 +48,7 @@ public class SingleMaltApi {
     }
 
     @DeleteMapping
-    public void deleteMalt(@RequestParam Integer index){
+    public void deleteMalt(@RequestParam Long index){
         singleMaltManager.deleteById(index);
     }
 }

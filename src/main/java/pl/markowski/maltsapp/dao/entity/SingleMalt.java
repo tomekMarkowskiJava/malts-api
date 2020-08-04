@@ -9,24 +9,24 @@ import javax.persistence.Id;
 public class SingleMalt {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Integer id;
+    private Long id;
     private String name;
     private Integer age;
 
     public SingleMalt() {
     }
 
-    public SingleMalt(Integer id, String name, Integer age) {
+    public SingleMalt(Long id, String name, Integer age) {
         this.id = id;
         this.name = name;
         this.age = age;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

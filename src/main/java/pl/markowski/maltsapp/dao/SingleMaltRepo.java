@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import pl.markowski.maltsapp.dao.entity.SingleMalt;
 
 @Repository
-public interface SingleMaltRepo extends CrudRepository<SingleMalt, Integer> {
+public interface SingleMaltRepo extends CrudRepository<SingleMalt, Long> {
 }
