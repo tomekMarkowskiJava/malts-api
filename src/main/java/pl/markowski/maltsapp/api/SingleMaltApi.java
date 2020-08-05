@@ -38,17 +38,17 @@ public class SingleMaltApi {
     }
 
     @PostMapping
-    public SingleMalt addMalt(@RequestBody SingleMalt singleMalt){
+    public SingleMalt addMalt(@RequestBody SingleMalt singleMalt) {
         return singleMaltManager.save(singleMalt);
     }
 
     @PutMapping
-    public SingleMalt updateMalt(@RequestBody SingleMalt singleMalt){
+    public SingleMalt updateMalt(@RequestBody SingleMalt singleMalt) {
         return singleMaltManager.save(singleMalt);
     }
 
     @DeleteMapping
-    public void deleteMalt(@RequestParam Long index){
+    public void deleteMalt(@RequestParam Long index) {
         singleMaltManager.deleteById(index);
     }
 }

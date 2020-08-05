@@ -19,25 +19,27 @@ public class SingleMaltManager {
         this.singleMaltRepo = singleMaltRepo;
     }
 
-    public Optional<SingleMalt> findById(Long id){
+    public Optional<SingleMalt> findById(Long id) {
         return singleMaltRepo.findById(id);
     }
 
-    public Iterable<SingleMalt> findAll(){
+    public Iterable<SingleMalt> findAll() {
         return singleMaltRepo.findAll();
     }
 
-    public SingleMalt save(SingleMalt singleMalt){
+    public SingleMalt save(SingleMalt singleMalt) {
         return singleMaltRepo.save(singleMalt);
     }
 
-    public void deleteById(Long id){
+    public void deleteById(Long id) {
         singleMaltRepo.deleteById(id);
     }
 
     @EventListener(ApplicationReadyEvent.class)
-    public void fill(){
-        save(new SingleMalt(1L,"Ardbeg",10));
+    public void fill() {
+        save(new SingleMalt(1L, "Ardbeg", 10));
+        save(new SingleMalt(2L, "Lagavulin", 16));
+        save(new SingleMalt(3L, "Glenfarclas", 10));
     }
 
 
